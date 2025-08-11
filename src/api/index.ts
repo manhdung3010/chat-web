@@ -1,5 +1,4 @@
 import axios, { AxiosInstance, AxiosResponse, AxiosError } from "axios";
-import { message } from "antd";
 
 // API Response types
 export interface ApiResponse<T = any> {
@@ -53,7 +52,7 @@ axiosClient.interceptors.response.use(
     // Handle different error types
     switch (status) {
       case 401:
-        message.error("Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.");
+        alert("Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.");
         // Redirect to login page
         if (typeof window !== "undefined") {
           localStorage.removeItem("token");
@@ -61,33 +60,33 @@ axiosClient.interceptors.response.use(
         }
         break;
       case 403:
-        message.error("Bạn không có quyền truy cập vào tài nguyên này.");
+        alert("Bạn không có quyền truy cập vào tài nguyên này.");
         break;
       case 404:
-        message.error("Không tìm thấy tài nguyên yêu cầu.");
+        alert("Không tìm thấy tài nguyên yêu cầu.");
         break;
       case 422:
         // Validation errors
         if (errors) {
-          Object.values(errors).forEach((errorArray) => {
-            errorArray.forEach((err) => message.error(err));
+          Object.values(errors).forEach((errorArray:any) => {
+            errorArray.forEach((err:any) => alert(err));
           });
         } else {
-          message.error(errorMessage);
+          alert(errorMessage);
         }
         break;
       case 500:
-        message.error("Lỗi server. Vui lòng thử lại sau.");
+        alert("Lỗi server. Vui lòng thử lại sau.");
         break;
       default:
         if (error.code === "ECONNABORTED") {
-          message.error("Yêu cầu bị timeout. Vui lòng thử lại.");
+          alert("Yêu cầu bị timeout. Vui lòng thử lại.");
         } else if (!error.response) {
-          message.error(
+          alert(
             "Không thể kết nối đến server. Vui lòng kiểm tra kết nối mạng."
           );
         } else {
-          message.error(errorMessage);
+          alert(errorMessage);
         }
     }
 

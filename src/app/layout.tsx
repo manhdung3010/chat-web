@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "./providers";
-import Header from "@/layouts/Header";
-import Footer from "@/layouts/Footer";
 import { Inter } from "next/font/google";
 
 const inter = Inter({
@@ -12,14 +10,14 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Base Code - Next.js TypeScript",
-    template: "%s | Base Code",
+    default: "Chat App",
+    template: "%s | Chat App",
   },
-  description: "Một base code chuẩn cho dự án Next.js với TypeScript",
-  keywords: ["Next.js", "TypeScript", "React", "Base Code"],
-  authors: [{ name: "Base Code Team" }],
-  creator: "Base Code Team",
-  publisher: "Base Code",
+  description: "Ứng dụng chat thời gian thực - giao diện mẫu với Next.js & Tailwind",
+  keywords: ["Chat", "Next.js", "TypeScript", "Tailwind", "UI"],
+  authors: [{ name: "Chat App Team" }],
+  creator: "Chat App Team",
+  publisher: "Chat App",
   formatDetection: {
     email: false,
     address: false,
@@ -32,14 +30,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "vi_VN",
     url: "/",
-    title: "Base Code - Next.js TypeScript",
-    description: "Một base code chuẩn cho dự án Next.js với TypeScript",
-    siteName: "Base Code",
+    title: "Chat App",
+    description: "Ứng dụng chat thời gian thực - giao diện mẫu với Next.js & Tailwind",
+    siteName: "Chat App",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Base Code - Next.js TypeScript",
-    description: "Một base code chuẩn cho dự án Next.js với TypeScript",
+    title: "Chat App",
+    description: "Ứng dụng chat thời gian thực - giao diện mẫu với Next.js & Tailwind",
   },
   robots: {
     index: true,
@@ -59,17 +57,16 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Dark mode toggle sẽ được thêm sau
   return (
-    <html lang="vi" className="light">
+    <html lang="vi" suppressHydrationWarning className="">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className={`${inter.className} antialiased`}>
+      <body className={`${inter.className} antialiased bg-background text-foreground transition-colors duration-300`}>
         <Providers>
-          <div className="min-h-screen flex flex-col">
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
+          <div>
+            {children}
           </div>
         </Providers>
       </body>

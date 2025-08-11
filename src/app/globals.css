@@ -2,13 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
+/* =========================
+   THEME VARIABLES
+========================= */
+:root {
+  --primary: 222 83% 57%; /* #2563eb */
+  --primary-foreground: 0 0% 100%; /* #fff */
+  --secondary: 210 40% 98%; /* #f1f5f9 */
+  --secondary-foreground: 222 47% 11%; /* #0f172a */
+  --background: 0 0% 100%; /* #fff */
+  --foreground: 222 47% 11%; /* #0f172a */
+  --border: 210 16% 93%; /* #e5e7eb */
+  --input: 210 16% 93%;
+  --muted: 210 16% 93%;
+  --accent: 198 93% 60%; /* #38bdf8 */
+  --card: 0 0% 100%;
+}
+
+.dark {
+  --primary: 222 83% 47%; /* #1d4ed8 */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 222 47% 20%; /* #1e293b */
+  --secondary-foreground: 210 40% 98%; /* #f1f5f9 */
+  --background: 222 47% 11%; /* #0f172a */
+  --foreground: 210 40% 98%; /* #f1f5f9 */
+  --border: 222 47% 20%; /* #1e293b */
+  --input: 222 47% 20%;
+  --muted: 222 47% 20%;
+  --accent: 198 93% 48%; /* #0ea5e9 */
+  --card: 222 47% 20%;
+}
+
 @layer base {
   * {
-    @apply border-border;
+    border-color: hsl(var(--border));
   }
 
   body {
-    @apply bg-background text-foreground;
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
 
   html {
@@ -22,45 +54,58 @@
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
-  /* Custom width container */
   .w-container {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
-  /* Custom button styles */
+  /* Buttons */
   .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+    background-color: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    @apply font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+  }
+  .btn-primary:hover {
+    background-color: hsl(var(--primary) / 0.9);
   }
 
   .btn-secondary {
-    @apply bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+    background-color: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+    @apply font-medium py-2 px-4 rounded-lg transition-colors duration-200;
+  }
+  .btn-secondary:hover {
+    background-color: hsl(var(--secondary) / 0.9);
   }
 
-  /* Custom card styles */
+  /* Card */
   .card {
-    @apply bg-white rounded-lg shadow-sm border border-gray-200 p-6;
+    background-color: hsl(var(--card));
+    border-color: hsl(var(--border));
+    @apply rounded-lg shadow-sm border p-6;
   }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  /* Custom color utilities */
   .text-primary {
-    @apply text-blue-600;
+    color: hsl(var(--primary));
   }
-
   .bg-primary {
-    @apply bg-blue-600;
+    background-color: hsl(var(--primary));
   }
-
-  .bg-secondary {
-    @apply bg-gray-100;
-  }
-
   .border-primary {
-    @apply border-blue-600;
+    border-color: hsl(var(--primary));
+  }
+
+  .bg-card {
+    background-color: hsl(var(--card));
+  }
+  .text-foreground {
+    color: hsl(var(--foreground));
+  }
+  .text-foreground\/70 {
+    color: hsl(var(--foreground) / 0.7);
+  }
+  .border-border {
+    border-color: hsl(var(--border));
   }
 }
