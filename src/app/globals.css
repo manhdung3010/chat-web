@@ -108,4 +108,150 @@
   .border-border {
     border-color: hsl(var(--border));
   }
+
+  /* Background Patterns */
+  .bg-grid-slate-100 {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(148 163 184 / 0.1)'%3e%3cpath d='m0 .5h32m-32 0v32'/%3e%3c/svg%3e");
+  }
+
+  .bg-grid-slate-700\/25 {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(51 65 85 / 0.25)'%3e%3cpath d='m0 .5h32m-32 0v32'/%3e%3c/svg%3e");
+  }
+
+  /* Sonner Toast Customization */
+  [data-sonner-toaster] {
+    --normal-bg: rgba(255, 255, 255, 0.95);
+    --normal-border: rgba(255, 255, 255, 0.3);
+    --normal-text: rgb(17, 24, 39);
+    --success-bg: rgba(240, 253, 244, 0.95);
+    --success-border: rgba(34, 197, 94, 0.2);
+    --success-text: rgb(21, 128, 61);
+    --error-bg: rgba(254, 242, 242, 0.95);
+    --error-border: rgba(239, 68, 68, 0.2);
+    --error-text: rgb(153, 27, 27);
+    --warning-bg: rgba(254, 252, 232, 0.95);
+    --warning-border: rgba(245, 158, 11, 0.2);
+    --warning-text: rgb(146, 64, 14);
+    --info-bg: rgba(239, 246, 255, 0.95);
+    --info-border: rgba(59, 130, 246, 0.2);
+    --info-text: rgb(30, 64, 175);
+  }
+
+  [data-sonner-toaster][data-theme="dark"] {
+    --normal-bg: rgba(17, 24, 39, 0.95);
+    --normal-border: rgba(55, 65, 81, 0.3);
+    --normal-text: rgb(243, 244, 246);
+    --success-bg: rgba(6, 78, 59, 0.95);
+    --success-border: rgba(34, 197, 94, 0.2);
+    --success-text: rgb(187, 247, 208);
+    --error-bg: rgba(127, 29, 29, 0.95);
+    --error-border: rgba(239, 68, 68, 0.2);
+    --error-text: rgb(254, 202, 202);
+    --warning-bg: rgba(120, 53, 15, 0.95);
+    --warning-border: rgba(245, 158, 11, 0.2);
+    --warning-text: rgb(254, 243, 199);
+    --info-bg: rgba(30, 58, 138, 0.95);
+    --info-border: rgba(59, 130, 246, 0.2);
+    --info-text: rgb(219, 234, 254);
+  }
+
+  [data-sonner-toast] {
+    backdrop-filter: blur(16px);
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    font-weight: 500;
+    min-width: 320px;
+    max-width: 400px;
+    padding: 16px 20px;
+  }
+
+  [data-sonner-toast][data-type="success"] {
+    background: var(--success-bg) !important;
+    border: 1px solid var(--success-border) !important;
+    color: var(--success-text) !important;
+  }
+
+  [data-sonner-toast][data-type="error"] {
+    background: var(--error-bg) !important;
+    border: 1px solid var(--error-border) !important;
+    color: var(--error-text) !important;
+  }
+
+  [data-sonner-toast][data-type="warning"] {
+    background: var(--warning-bg) !important;
+    border: 1px solid var(--warning-border) !important;
+    color: var(--warning-text) !important;
+  }
+
+  [data-sonner-toast][data-type="info"] {
+    background: var(--info-bg) !important;
+    border: 1px solid var(--info-border) !important;
+    color: var(--info-text) !important;
+  }
+
+  [data-sonner-toast][data-type="default"] {
+    background: var(--normal-bg);
+    border: 1px solid var(--normal-border);
+    color: var(--normal-text);
+  }
+
+  /* Toast Icons */
+  [data-sonner-toast] [data-icon] {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  [data-sonner-toast][data-type="success"] [data-icon] {
+    color: rgb(34, 197, 94);
+  }
+
+  [data-sonner-toast][data-type="error"] [data-icon] {
+    color: rgb(239, 68, 68);
+  }
+
+  [data-sonner-toast][data-type="warning"] [data-icon] {
+    color: rgb(245, 158, 11);
+  }
+
+  [data-sonner-toast][data-type="info"] [data-icon] {
+    color: rgb(59, 130, 246);
+  }
+
+  /* Toast Content */
+  [data-sonner-toast] [data-content] {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+  }
+
+  [data-sonner-toast] [data-close-button]:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  [data-sonner-toaster][data-theme="dark"]
+    [data-sonner-toast]
+    [data-close-button] {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  [data-sonner-toaster][data-theme="dark"]
+    [data-sonner-toast]
+    [data-close-button]:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Toast Container Layout */
+  [data-sonner-toast] {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  [data-sonner-toast] [data-content] {
+    order: 1;
+    flex: 1;
+  }
 }

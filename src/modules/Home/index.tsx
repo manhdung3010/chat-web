@@ -8,41 +8,8 @@ import Button from "@/components/common/Button";
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-background via-background to-background/95">
-      {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-xl">
-        <div className="container flex items-center justify-between gap-4 py-4">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-3"
-          >
-            <div className="relative">
-              <div className="h-10 w-10 rounded-xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground grid place-content-center font-bold text-lg shadow-lg">
-                C
-              </div>
-              <div className="absolute -top-1 -right-1 h-3 w-3 rounded-full bg-green-500 border-2 border-background"></div>
-            </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-              Chat App
-            </span>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center gap-4"
-          >
-            <Link href="/auth/login" className="text-sm text-foreground/70 hover:text-foreground transition-colors">
-              Đăng nhập
-            </Link>
-            <Link href="/auth/register">
-              <Button variant="gradient" size="md">
-                Bắt đầu miễn phí
-              </Button>
-            </Link>
-            <ThemeToggle />
-          </motion.div>
-        </div>
-      </header>
+
+
 
       {/* Hero Section */}
       <section className="relative overflow-hidden py-20 lg:py-32">
@@ -330,28 +297,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-border/50 bg-muted/20 py-12">
-        <div className="container">
-          <div className="flex flex-col items-center justify-between gap-6 lg:flex-row">
-            <div className="flex items-center gap-3">
-              <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-primary/80 text-primary-foreground grid place-content-center font-bold text-sm">
-                C
-              </div>
-              <span className="text-lg font-semibold">Chat App</span>
-            </div>
-            <div className="flex items-center gap-6 text-sm text-foreground/60">
-              <Link href="#" className="hover:text-foreground transition-colors">Về chúng tôi</Link>
-              <Link href="#" className="hover:text-foreground transition-colors">Tính năng</Link>
-              <Link href="#" className="hover:text-foreground transition-colors">Hỗ trợ</Link>
-              <Link href="#" className="hover:text-foreground transition-colors">Liên hệ</Link>
-            </div>
-          </div>
-          <div className="mt-8 border-t border-border/30 pt-8 text-center text-sm text-foreground/60">
-            <p>&copy; 2024 Chat App. Tất cả quyền được bảo lưu.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

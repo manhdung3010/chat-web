@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Providers from "./providers";
 import { Inter } from "next/font/google";
+import { Toaster } from "@/components/common/Toaster";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -68,6 +69,7 @@ export default function RootLayout({
           <div>
             {children}
           </div>
+          <Toaster />
         </Providers>
       </body>
     </html>

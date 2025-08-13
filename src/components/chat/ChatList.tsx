@@ -24,8 +24,8 @@ export default function ChatList({ items, onSelect }: ChatListProps) {
                     <button
                         onClick={() => onSelect(item.id)}
                         className={`flex w-full items-center gap-3 rounded-xl border border-transparent px-3 py-3 text-left transition-all duration-200 text-foreground hover:bg-secondary/50 hover:border-border/50 ${item.active
-                                ? "bg-secondary border-border shadow-sm"
-                                : ""
+                            ? "bg-secondary border-border shadow-sm"
+                            : ""
                             }`}
                     >
                         <Avatar name={item.name} src={item.avatar} status={item.online ? "online" : "offline"} />

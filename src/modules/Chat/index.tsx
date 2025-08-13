@@ -9,6 +9,7 @@ import Avatar from "@/components/common/Avatar";
 import ThemeToggle from "@/components/common/ThemeToggle";
 import Button from "@/components/common/Button";
 
+
 type Message = {
     id: string;
     chatId: string;

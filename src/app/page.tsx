@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import HomePage from "@/modules/Home";
+import HomeLayout from '@/layouts/HomeLayout';
 
 export const metadata: Metadata = {
   title: 'Chat App - Nền tảng trò chuyện hiện đại và chuyên nghiệp',
@@ -25,6 +26,6 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <HomePage />
+    <HomeLayout><HomePage /></HomeLayout>
   );
 }

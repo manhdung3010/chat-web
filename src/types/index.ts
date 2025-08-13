@@ -5,6 +5,68 @@ export interface BaseEntity {
   updatedAt?: string;
 }
 
+// Auth API types
+export interface LoginRequest {
+  usernameOrEmail: string;
+  password: string;
+}
+
+export interface RegisterRequest {
+  username: string;
+  email: string;
+  password: string;
+  avatar?: string;
+}
+
+export interface RefreshTokenRequest {
+  refreshToken: string;
+}
+
+export interface AuthUser {
+  id: string;
+  username: string;
+  email: string;
+  avatar: string;
+  role: "USER" | "ADMIN" | "MODERATOR";
+}
+
+export interface AuthTokens {
+  accessToken: string;
+  refreshToken: string;
+  tokenType: string;
+}
+
+export interface LoginResponse {
+  accessToken: string;
+  refreshToken: string;
+  tokenType: string;
+  user: AuthUser;
+}
+
+export interface ApiResponse<T = any> {
+  success: boolean;
+  code: number;
+  message: string;
+  timestamp: string;
+  data: T;
+  pagination?: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+    hasNext: boolean;
+    hasPrevious: boolean;
+  };
+}
+
+export interface AuthApiResponse<T = any> {
+  success: boolean;
+  code: number;
+  message: string;
+  timestamp: string;
+  data: T;
+}
+
 // User types
 export interface User extends BaseEntity {
   email: string;
