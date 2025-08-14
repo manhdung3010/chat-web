@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import ChatPage from "@/modules/Chat";
+import ChatLayout from '@/layouts/ChatLayout';
 
 export const metadata: Metadata = {
   title: 'Chat - Trò chuyện trực tuyến | Chat App',
@@ -11,5 +12,7 @@ export const metadata: Metadata = {
 };
 
 export default function Chat() {
-  return <ChatPage />
+  return <ChatLayout>
+    <ChatPage />
+  </ChatLayout>
 }

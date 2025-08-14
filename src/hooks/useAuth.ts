@@ -1,13 +1,13 @@
-import {
-  useAuthStore,
-  useAuthUser,
-  useAuthTokens,
-  useIsAuthenticated,
-  useAuthLoading,
-} from "@/stores";
 import { useRouter } from "next/navigation";
 import { useToast } from "./useToast";
 import { useEffect } from "react";
+import {
+  useAuthLoading,
+  useAuthStore,
+  useAuthTokens,
+  useAuthUser,
+  useIsAuthenticated,
+} from "@/stores/auth.store";
 
 export const useAuth = () => {
   const store = useAuthStore();

@@ -4,7 +4,7 @@ import React, { useState, forwardRef } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/utils/cn";
 
-export type TextInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
+export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
     leftIcon?: React.ReactNode;
     rightIcon?: React.ReactNode;
     label?: string;
@@ -13,7 +13,7 @@ export type TextInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
     floatingLabel?: boolean;
 };
 
-export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(({
+export const Input = forwardRef<HTMLInputElement, InputProps>(({
     className = "",
     leftIcon,
     rightIcon,
@@ -127,4 +127,4 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(({
     );
 });
 
-TextInput.displayName = "TextInput";
+Input.displayName = "Input";

@@ -1,4 +1,4 @@
-import { useAuthStore } from "@/stores";
+import { useAuthStore } from "@/stores/auth.store";
 
 /**
  * Client-side auth check utility

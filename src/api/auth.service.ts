@@ -1,11 +1,43 @@
 import axiosClient from ".";
-import {
-  LoginRequest,
-  RegisterRequest,
-  RefreshTokenRequest,
-  AuthApiResponse,
-  LoginResponse,
-} from "../types";
+
+export interface AuthApiResponse<T = any> {
+  success: boolean;
+  code: number;
+  message: string;
+  timestamp: string;
+  data: T;
+}
+
+export interface LoginRequest {
+  usernameOrEmail: string;
+  password: string;
+}
+
+export interface RegisterRequest {
+  username: string;
+  email: string;
+  password: string;
+  avatar?: string;
+}
+
+export interface RefreshTokenRequest {
+  refreshToken: string;
+}
+
+export interface AuthUser {
+  id: string;
+  username: string;
+  email: string;
+  avatar: string;
+  role: "USER" | "ADMIN" | "MODERATOR";
+}
+
+export interface LoginResponse {
+  accessToken: string;
+  refreshToken: string;
+  tokenType: string;
+  user: AuthUser;
+}
 
 export function login(
   payload: LoginRequest

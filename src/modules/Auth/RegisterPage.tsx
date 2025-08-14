@@ -2,16 +2,21 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { TextInput } from "@/components/common/Input";
+import { Input } from "@/components/common/Input";
 import { Checkbox } from "@/components/common/Checkbox";
 import Button from "@/components/common/Button";
 import { useToast } from "@/hooks/useToast";
 import { useRegisterForm, type RegisterFormData } from "@/hooks/useAuthForm";
+import { register as registerUser } from "@/api/auth.service";
 import AuthLayout from "@/layouts/AuthLayout";
+import { useRouter } from "next/navigation";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function RegisterPage() {
     const [isLoading, setIsLoading] = useState(false);
+    const router = useRouter();
     const toast = useToast();
+    const { login: loginUser, setLoading } = useAuth();
 
     const {
         register,
@@ -23,24 +28,45 @@ export default function RegisterPage() {
 
     const onSubmit = async (data: RegisterFormData) => {
         setIsLoading(true);
+        setLoading(true);
 
         try {
-            // Simulate API call
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            const response = await registerUser({
+                username: data.username,
+                email: data.email,
+                password: data.password,
+            });
 
-            toast.success("Đăng ký thành công! Đang chuyển hướng...");
+            if (response.data.success) {
+                const { user, accessToken, refreshToken, tokenType } = response.data.data;
 
-            // Reset form
-            reset();
+                // Store in Zustand store
+                loginUser(user, {
+                    accessToken,
+                    refreshToken,
+                    tokenType,
+                });
 
-            // Redirect to chat page after a short delay
-            setTimeout(() => {
-                window.location.href = "/chat";
-            }, 1000);
-        } catch (error) {
-            toast.error("Đăng ký thất bại. Vui lòng thử lại.");
+                // Also store in localStorage for backward compatibility
+                localStorage.setItem("accessToken", accessToken);
+                localStorage.setItem("refreshToken", refreshToken);
+                localStorage.setItem("user", JSON.stringify(user));
+
+                toast.success(response.data.message || "Đăng ký thành công!");
+
+                // Reset form
+                reset();
+
+                // Redirect to chat page
+                router.push("/chat");
+            } else {
+                toast.error(response.data.message || "Đăng ký thất bại");
+            }
+        } catch (error: any) {
+            toast.error(error.response?.data?.message || "Đăng ký thất bại. Vui lòng thử lại.");
         } finally {
             setIsLoading(false);
+            setLoading(false);
         }
     };
 
@@ -65,17 +91,17 @@ export default function RegisterPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
                 >
-                    <TextInput
-                        label="Họ và tên"
+                    <Input
+                        label="Tên đăng nhập"
                         type="text"
                         floatingLabel
-                        error={errors.fullName?.message}
-                        variant={errors.fullName ? "error" : "default"}
-                        {...register("fullName")}
+                        error={errors.username?.message}
+                        variant={errors.username ? "error" : "default"}
+                        {...register("username")}
                         required
                     />
 
-                    <TextInput
+                    <Input
                         label="Email"
                         type="email"
                         floatingLabel
@@ -85,7 +111,7 @@ export default function RegisterPage() {
                         required
                     />
 
-                    <TextInput
+                    <Input
                         label="Mật khẩu"
                         type="password"
                         floatingLabel
@@ -95,7 +121,7 @@ export default function RegisterPage() {
                         required
                     />
 
-                    <TextInput
+                    <Input
                         label="Xác nhận mật khẩu"
                         type="password"
                         floatingLabel
@@ -114,8 +140,7 @@ export default function RegisterPage() {
                     <Checkbox
                         label="Tôi đồng ý với điều khoản và điều kiện"
                         description="Bằng cách đăng ký, bạn đồng ý với Điều khoản dịch vụ và Chính sách bảo mật của chúng tôi"
-                        checked={watch("agreeToTerms")}
-                        onChange={(e) => register("agreeToTerms").onChange(e)}
+                        {...register("agreeToTerms")}
                         variant="primary"
                     />
                     {errors.agreeToTerms && (

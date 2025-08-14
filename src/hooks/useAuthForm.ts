@@ -14,10 +14,14 @@ export const loginSchema = z.object({
 // Register Schema
 export const registerSchema = z
   .object({
-    fullName: z
+    username: z
       .string()
-      .min(1, "Họ tên là bắt buộc")
-      .min(2, "Họ tên phải có ít nhất 2 ký tự"),
+      .min(1, "Tên đăng nhập là bắt buộc")
+      .min(3, "Tên đăng nhập phải có ít nhất 3 ký tự")
+      .regex(
+        /^[a-zA-Z0-9_]+$/,
+        "Tên đăng nhập chỉ được chứa chữ cái, số và dấu gạch dưới"
+      ),
     email: z.string().min(1, "Email là bắt buộc").email("Email không hợp lệ"),
     password: z
       .string()
@@ -61,7 +65,7 @@ export const useRegisterForm = () => {
   return useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
     defaultValues: {
-      fullName: "",
+      username: "",
       email: "",
       password: "",
       confirmPassword: "",

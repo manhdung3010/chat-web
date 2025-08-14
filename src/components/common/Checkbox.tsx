@@ -24,6 +24,8 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(({
 
     const isChecked = variant === "primary" || props.checked;
 
+    console.log(props);
+
     return (
         <label className="flex items-start gap-3 cursor-pointer group">
             <div className="relative flex-shrink-0">

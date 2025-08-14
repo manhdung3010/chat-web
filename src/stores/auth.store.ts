@@ -1,6 +1,11 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
-import { AuthUser, AuthTokens } from "@/types";
+
+export interface AuthTokens {
+  accessToken: string;
+  refreshToken: string;
+  tokenType: string;
+}
 
 // Utility function to set cookie
 const setCookie = (name: string, value: string, days: number = 7) => {
@@ -19,16 +24,16 @@ const removeCookie = (name: string) => {
 
 interface AuthState {
   // State
-  user: AuthUser | null;
+  user: any | null;
   tokens: AuthTokens | null;
   isAuthenticated: boolean;
   isLoading: boolean;
 
   // Actions
-  login: (user: AuthUser, tokens: AuthTokens) => void;
+  login: (user: any, tokens: AuthTokens) => void;
   logout: () => void;
   setLoading: (loading: boolean) => void;
-  updateUser: (user: Partial<AuthUser>) => void;
+  updateUser: (user: Partial<any>) => void;
   refreshTokens: (tokens: AuthTokens) => void;
 }
 
@@ -42,7 +47,7 @@ export const useAuthStore = create<AuthState>()(
       isLoading: false,
 
       // Actions
-      login: (user: AuthUser, tokens: AuthTokens) => {
+      login: (user: any, tokens: AuthTokens) => {
         set({
           user,
           tokens,
@@ -70,7 +75,7 @@ export const useAuthStore = create<AuthState>()(
         set({ isLoading: loading });
       },
 
-      updateUser: (userData: Partial<AuthUser>) => {
+      updateUser: (userData: Partial<any>) => {
         const currentUser = get().user;
         if (currentUser) {
           set({

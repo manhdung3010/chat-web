@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { TextInput } from "@/components/common/Input";
+import { Input } from "@/components/common/Input";
 import Button from "@/components/common/Button";
 import { useToast } from "@/hooks/useToast";
 import { useLoginForm, type LoginFormData } from "@/hooks/useAuthForm";
@@ -90,7 +90,7 @@ export default function LoginPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
         >
-          <TextInput
+          <Input
             label="Tên đăng nhập hoặc Email"
             type="text"
             floatingLabel
@@ -100,7 +100,7 @@ export default function LoginPage() {
             required
           />
 
-          <TextInput
+          <Input
             label="Mật khẩu"
             type="password"
             floatingLabel

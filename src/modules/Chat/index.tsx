@@ -60,51 +60,7 @@ export default function ChatPage() {
     };
 
     return (
-        <div className="grid h-screen grid-rows-[auto,1fr] bg-background">
-            {/* Header */}
-            <header className="border-b border-border/50 bg-card/50 backdrop-blur-sm">
-                <div className="container flex h-16 items-center justify-between px-4">
-                    <div className="flex items-center gap-4">
-                        <div className="flex items-center gap-3">
-                            <Avatar name={activeChat.name} size={40} />
-                            <div>
-                                <div className="font-semibold text-foreground">{activeChat.name}</div>
-                                <div className="flex items-center gap-2 text-xs text-foreground/60">
-                                    <span className={`h-2 w-2 rounded-full ${activeChat.online ? 'bg-green-500' : 'bg-foreground/30'}`}></span>
-                                    {activeChat.online ? 'Đang hoạt động' : 'Không hoạt động'}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="flex items-center gap-3">
-                        <Button variant="ghost" size="sm" className="hidden md:inline-flex">
-                            🔍 Tìm kiếm
-                        </Button>
-                        <Button variant="ghost" size="sm" className="hidden md:inline-flex">
-                            ⚙️ Cài đặt
-                        </Button>
-                        <Button
-                            variant="secondary"
-                            size="sm"
-                            onClick={() => setShowLeft(true)}
-                            className="md:hidden"
-                        >
-                            📋 Danh sách
-                        </Button>
-                        <Button
-                            variant="secondary"
-                            size="sm"
-                            onClick={() => setShowRight(true)}
-                            className="md:hidden"
-                        >
-                            ℹ️ Thông tin
-                        </Button>
-                        <ThemeToggle />
-                    </div>
-                </div>
-            </header>
-
-            {/* Main Content */}
+        <>
             <div className="grid grid-cols-1 md:grid-cols-[320px,1fr,300px]">
                 {/* Left Sidebar - Chat List */}
                 <aside className="hidden h-[calc(100vh-64px)] border-r border-border/50 bg-card/30 md:block">
@@ -305,6 +261,6 @@ export default function ChatPage() {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </div>
+        </>
     );
 }
